@@ -1,6 +1,7 @@
 #define SDL_MAIN_HANDLED
 
 #include <iostream>
+#include "glad/glad.h"
 #include <SDL2/sdl.h>
 
 int main() {

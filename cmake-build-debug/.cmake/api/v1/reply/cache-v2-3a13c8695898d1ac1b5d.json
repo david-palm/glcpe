@@ -771,7 +771,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "1"
+			"value" : "3"
 		},
 		{
 			"name" : "CMAKE_OBJCOPY",
@@ -1264,6 +1264,42 @@
 			],
 			"type" : "STATIC",
 			"value" : "C:/projects/glcpe"
+		},
+		{
+			"name" : "uml-creator_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "C:/projects/glcpe/cmake-build-debug/vendor/glad"
+		},
+		{
+			"name" : "uml-creator_IS_TOP_LEVEL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "OFF"
+		},
+		{
+			"name" : "uml-creator_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "C:/projects/glcpe/vendor/glad"
 		}
 	],
 	"kind" : "cache",
