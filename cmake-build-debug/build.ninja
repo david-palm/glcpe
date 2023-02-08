@@ -66,7 +66,7 @@ build CMakeFiles/glcpe.dir/glcpe/main.cpp.obj: CXX_COMPILER__glcpe_Debug C$:/pro
 
 build glcpe.exe: CXX_EXECUTABLE_LINKER__glcpe_Debug CMakeFiles/glcpe.dir/glcpe/main.cpp.obj | vendor/glad/libglad.a || vendor/glad/libglad.a
   FLAGS = -g
-  LINK_LIBRARIES = vendor/glad/libglad.a  -lmingw32  -lSDL2Main  -lSDL2  -mwindows  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = -lmingw32  -lSDL2Main  -lSDL2  -mwindows  vendor/glad/libglad.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\glcpe.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
