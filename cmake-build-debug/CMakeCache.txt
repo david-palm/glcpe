@@ -242,6 +242,15 @@ glcpe_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 glcpe_SOURCE_DIR:STATIC=C:/projects/glcpe
 
+//Value Computed by CMake
+uml-creator_BINARY_DIR:STATIC=C:/projects/glcpe/cmake-build-debug/vendor/glad
+
+//Value Computed by CMake
+uml-creator_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+uml-creator_SOURCE_DIR:STATIC=C:/projects/glcpe/vendor/glad
+
 
 ########################
 # INTERNAL cache entries
@@ -345,7 +354,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

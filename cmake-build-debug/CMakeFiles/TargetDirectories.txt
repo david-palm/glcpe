@@ -1,3 +1,8 @@
 C:/projects/glcpe/cmake-build-debug/CMakeFiles/glcpe.dir
 C:/projects/glcpe/cmake-build-debug/CMakeFiles/edit_cache.dir
 C:/projects/glcpe/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/projects/glcpe/cmake-build-debug/glcpe/CMakeFiles/edit_cache.dir
+C:/projects/glcpe/cmake-build-debug/glcpe/CMakeFiles/rebuild_cache.dir
+C:/projects/glcpe/cmake-build-debug/vendor/glad/CMakeFiles/glad.dir
+C:/projects/glcpe/cmake-build-debug/vendor/glad/CMakeFiles/edit_cache.dir
+C:/projects/glcpe/cmake-build-debug/vendor/glad/CMakeFiles/rebuild_cache.dir

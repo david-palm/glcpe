@@ -144,6 +144,12 @@
 			"isCMake" : true,
 			"isExternal" : true,
 			"path" : "C:/Program Files/JetBrains/CLion 2022.1.3/bin/cmake/win/share/cmake-3.22/Modules/CMakeCommonLanguageInclude.cmake"
+		},
+		{
+			"path" : "glcpe/CMakeLists.txt"
+		},
+		{
+			"path" : "vendor/glad/CMakeLists.txt"
 		}
 	],
 	"kind" : "cmakeFiles",
