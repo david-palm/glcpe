@@ -3,7 +3,7 @@ project(glcpe)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(glcpe glcpe/main.cpp glcpe/Application.cpp glcpe/Application.h)
+add_executable(glcpe glcpe/main.cpp glcpe/Application.cpp glcpe/Application.h glcpe/Window.h)
 
 # Adding subdirectory for glcpe
 add_subdirectory(glcpe)
