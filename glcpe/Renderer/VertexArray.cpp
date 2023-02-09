@@ -1,6 +1,7 @@
 #include "VertexArray.h"
-#include "../Platform/OpenGL/OpenGLVertexArray.h"
+//#include "../Platform/OpenGL/OpenGLVertexArray.h"
 
+/*
 VertexArray* VertexArray::create()
 {
     /*
@@ -9,6 +10,7 @@ VertexArray* VertexArray::create()
         case RendererAPI::OpenGL: return new OpenGLVertexArray();
     }
      */
-    return new OpenGLVertexArray();
+    //return new OpenGLVertexArray();
 
-}
+//}
+
