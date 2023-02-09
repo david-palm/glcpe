@@ -7,7 +7,7 @@
 #include <SDL.h>
 #include <SDL_opengles2.h>
 #else
-#include <SDL2/sdl.h>
+#include <SDL2/SDL.h>
 #endif
 
 #include <iostream>

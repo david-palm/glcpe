@@ -3,7 +3,7 @@ project(glcpe)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(glcpe glcpe/main.cpp glcpe/Application.cpp glcpe/Application.h glcpe/Window.h glcpe/Platform/OpenGL/OpenGLBuffer.cpp glcpe/Platform/OpenGL/OpenGLBuffer.h glcpe/Platform/OpenGL/OpenGLVertexArray.h glcpe/Platform/OpenGL/OpenGLVertexArray.cpp glcpe/Layer.cpp glcpe/Layer.h glcpe/LayerStack.cpp glcpe/LayerStack.h)
+add_executable(glcpe glcpe/main.cpp glcpe/Application.cpp glcpe/Application.h glcpe/Window.h glcpe/Platform/OpenGL/OpenGLBuffer.cpp glcpe/Platform/OpenGL/OpenGLBuffer.h glcpe/Platform/OpenGL/OpenGLVertexArray.h glcpe/Platform/OpenGL/OpenGLVertexArray.cpp glcpe/Layer.cpp glcpe/Layer.h glcpe/LayerStack.cpp glcpe/LayerStack.h glcpe/Platform/Windows/WindowsWindow.cpp glcpe/Platform/Windows/WindowsWindow.h)
 
 # Adding subdirectory for glcpe
 add_subdirectory(glcpe)
