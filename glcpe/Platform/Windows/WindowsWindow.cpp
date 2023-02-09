@@ -55,6 +55,7 @@ void WindowsWindow::shutdown()
 void WindowsWindow::onUpdate()
 {
 #ifndef __EMSCRIPTEN__
+    SDL_GL_SwapWindow(m_Window);
     SDL_Event event;
     while(SDL_PollEvent(&event))
     {
