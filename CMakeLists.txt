@@ -3,7 +3,7 @@ project(glcpe)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(glcpe glcpe/main.cpp glcpe/Application.cpp glcpe/Application.h glcpe/Window.h)
+add_executable(glcpe glcpe/main.cpp glcpe/Application.cpp glcpe/Application.h glcpe/Window.h glcpe/Platform/OpenGL/OpenGLBuffer.cpp glcpe/Platform/OpenGL/OpenGLBuffer.h)
 
 # Adding subdirectory for glcpe
 add_subdirectory(glcpe)
