@@ -19,12 +19,11 @@ WindowsWindow::WindowsWindow(const WindowProperties& properties)
 
 WindowsWindow::~WindowsWindow()
 {
-    shutdown();
+
 }
 
 
-void WindowsWindow::setVSync(bool enabled)
-{
+void WindowsWindow::setVSync(bool enabled) {
 
 }
 bool WindowsWindow::isVSync() const
@@ -34,11 +33,7 @@ bool WindowsWindow::isVSync() const
 
 void WindowsWindow::shutdown()
 {
-#ifndef __EMSCRIPTEN__
     SDL_DestroyWindow(m_Window);
-#else
-    glfwDestroyWindow(m_Window);
-#endif
 }
 
 void WindowsWindow::onUpdate() {
@@ -46,7 +41,8 @@ void WindowsWindow::onUpdate() {
     SDL_GL_SwapWindow(m_Window);
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
-        if (event.type == SDL_QUIT) {
+        if (event.type == SDL_QUIT || (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_CLOSE))
+        {
             shutdown();
         }
     }
@@ -73,6 +69,7 @@ void WindowsWindow::init(const WindowProperties& properties)
     }
     m_Window = SDL_CreateWindow("GLCPE Example", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, m_WindowData.width, m_WindowData.height, SDL_WINDOW_OPENGL);
     SDL_GL_CreateContext(m_Window);
+    SDL_SetWindowData(m_Window, "Window Data", &m_WindowData);
     //TODO: Find replacement for glfwSetWindowUserPointer
 #else
     if(!s_GLFWInitialized)

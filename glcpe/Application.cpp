@@ -94,9 +94,8 @@ Application::Application()
     glClear(GL_COLOR_BUFFER_BIT);
 
     m_Running = true;
-#ifndef __EMSCRIPTEN__
     run();
-#endif
+    SDL_Quit();
 }
 
 Application::~Application()

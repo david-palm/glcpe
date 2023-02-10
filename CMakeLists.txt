@@ -34,7 +34,8 @@ if(EMSCRIPTEN)
     set(CMAKE_EXECUTABLE_SUFFIX ".html")
     set_target_properties(glcpe PROPERTIES LINK_FLAGS "-s USE_GLFW=3 -s FULL_ES3=1")
 else()
-    target_link_libraries(glcpe -lmingw32 -lSDL2Main -lSDL2 -mwindows)
+    # Add -mwindows to disable all prints for production build
+    target_link_libraries(glcpe -lmingw32 -lSDL2Main -lSDL2)
 endif()
 # Adding subdirectories for vendor libraries
 add_subdirectory(vendor/glad)

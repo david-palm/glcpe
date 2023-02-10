@@ -15,6 +15,7 @@ int main()
 #ifdef __EMSCRIPTEN__
     emscripten_set_main_loop(mainLoop, 0, true);
 #endif
+    std::cout << "Test2";
     delete application;
     return 0;
 }
