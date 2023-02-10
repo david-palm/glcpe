@@ -109,18 +109,12 @@ void Application::runLoop()
     glClear(GL_COLOR_BUFFER_BIT);
 
     shaderSquare->bind();
-    int error1 = glGetError();
     vertexArraySquare->bind();
-    int error2 = glGetError();
     glDrawElements(GL_TRIANGLES, vertexArraySquare->getIndexBuffer()->getCount(), GL_UNSIGNED_INT, nullptr);
     shaderTriangle->bind();
     vertexArrayTriangle->bind();
     glDrawElements(GL_TRIANGLES, vertexArrayTriangle->getIndexBuffer()->getCount(), GL_UNSIGNED_INT, nullptr);
-#ifdef __EMSCRIPTEN__
-    if (error1 != 0 || error2 != 0)
-    { std::cout << "Error1: " << error1 << "Error2: " << error2 <<"\n"; }
-    else {std::cout << "No errors found!" << "\n"; }
-#endif
+
     for(Layer* layer : m_LayerStack)
     {
         layer->onUpdate();

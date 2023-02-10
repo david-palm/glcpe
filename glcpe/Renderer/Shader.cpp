@@ -124,7 +124,6 @@ Shader::~Shader()
 void Shader::bind() const
 {
     glUseProgram(m_ProgramId);
-    std::cout << "Binding shader \n";
 }
 void Shader::unbind() const
 {
