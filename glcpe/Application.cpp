@@ -95,7 +95,6 @@ Application::Application()
 
     m_Running = true;
     run();
-    SDL_Quit();
 }
 
 Application::~Application()
@@ -129,6 +128,7 @@ void Application::run()
     {
         runLoop();
     }
+    SDL_Quit();
 #endif
 }
 

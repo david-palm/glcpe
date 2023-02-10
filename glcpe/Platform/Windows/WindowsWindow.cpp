@@ -40,11 +40,9 @@ void WindowsWindow::onUpdate() {
 #ifndef __EMSCRIPTEN__
     SDL_GL_SwapWindow(m_Window);
     SDL_Event event;
-    while (SDL_PollEvent(&event)) {
-        if (event.type == SDL_QUIT || (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_CLOSE))
-        {
-            shutdown();
-        }
+    while(SDL_PollEvent(&event))
+    {
+
     }
 #endif
 }
@@ -67,10 +65,9 @@ void WindowsWindow::init(const WindowProperties& properties)
     {
         std::cout << "SDL successfully initialized!\n";
     }
-    m_Window = SDL_CreateWindow("GLCPE Example", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, m_WindowData.width, m_WindowData.height, SDL_WINDOW_OPENGL);
+    m_Window = SDL_CreateWindow("GLCPE Example", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, m_WindowData.width, m_WindowData.height, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
     SDL_GL_CreateContext(m_Window);
-    SDL_SetWindowData(m_Window, "Window Data", &m_WindowData);
-    //TODO: Find replacement for glfwSetWindowUserPointer
+    SDL_SetWindowData(m_Window, "WindowData", &m_WindowData);
 #else
     if(!s_GLFWInitialized)
     {
@@ -141,7 +138,41 @@ void WindowsWindow::init(const WindowProperties& properties)
         windowData.eventCallback(event);
         return 0;
     });
-#else
-    //GLFW callbacks
 #endif
+
+
+    SDL_AddEventWatch(reinterpret_cast<SDL_EventFilter>(sdlWindowCloseCallback), m_Window);
+    SDL_AddEventWatch(reinterpret_cast<SDL_EventFilter>(sdlWindowResizeCallback), m_Window);
 }
+
+
+static int sdlWindowCloseCallback(void* data, SDL_Event* sdlEvent)
+{
+   if(sdlEvent->type == SDL_QUIT || (sdlEvent->type == SDL_WINDOWEVENT && sdlEvent->window.event == SDL_WINDOWEVENT_CLOSE))
+   {
+       SDL_Window* window = (SDL_Window*)data;
+       WindowData &windowData = *(WindowData *) SDL_GetWindowData(window, "WindowData");;
+
+       WindowCloseEvent event;
+       windowData.eventCallback(event);
+   }
+   return 1;
+}
+
+static int sdlWindowResizeCallback(void* data, SDL_Event* sdlEvent)
+{
+    if(sdlEvent->type == SDL_WINDOWEVENT && sdlEvent->window.event == SDL_WINDOWEVENT_RESIZED)
+    {
+        SDL_Window* window = (SDL_Window*)data;
+        WindowData &windowData = *(WindowData *) SDL_GetWindowData(window, "WindowData");
+        int width, height;
+        SDL_GetWindowSize(window, &width, &height);
+        windowData.width = width;
+        windowData.height = height;
+
+        WindowResizeEvent event(width, height);
+        windowData.eventCallback(event);
+    }
+    return 1;
+}
+

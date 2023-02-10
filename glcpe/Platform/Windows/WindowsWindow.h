@@ -12,6 +12,16 @@
 
 #include "../../Window.h"
 
+struct WindowData
+{
+    using EventCallbackFunction = std::function<void(Event&)>;
+    std::string title;
+    unsigned int width, height;
+    bool vSync;
+
+    EventCallbackFunction eventCallback;
+};
+
 class WindowsWindow : public Window
 {
 public:
@@ -27,6 +37,7 @@ public:
 private:
     virtual void init(const WindowProperties& properties);
     virtual void shutdown();
+
 private:
 #ifndef __EMSCRIPTEN__
     SDL_Window* m_Window;
@@ -34,14 +45,11 @@ private:
     GLFWwindow* m_Window;
 #endif
 
-    struct WindowData
-    {
-        std::string title;
-        unsigned int width, height;
-        bool vSync;
 
-        EventCallbackFunction eventCallback;
-    };
 
     WindowData m_WindowData;
 };
+
+//Callback functions
+static int sdlWindowCloseCallback(void* data, SDL_Event* sdlEvent);
+static int sdlWindowResizeCallback(void* data, SDL_Event* sdlEvent);
