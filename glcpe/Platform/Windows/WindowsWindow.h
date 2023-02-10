@@ -3,7 +3,8 @@
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
 #include <emscripten/html5.h>
-#include <SDL.h>
+#define GLFW_INCLUDE_ES3
+#include "GLFW/glfw3.h"
 #else
 #include <SDL2/SDL.h>
 #endif
@@ -27,7 +28,11 @@ private:
     virtual void init(const WindowProperties& properties);
     virtual void shutdown();
 private:
+#ifndef __EMSCRIPTEN__
     SDL_Window* m_Window;
+#else
+    GLFWwindow* m_Window;
+#endif
 
     struct WindowData
     {

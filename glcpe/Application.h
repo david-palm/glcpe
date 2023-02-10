@@ -1,13 +1,14 @@
 #pragma once
 
-#include "glad/glad.h"
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
 #include <emscripten/html5.h>
-#include <SDL.h>
-#include <SDL_opengles2.h>
+#define GLFW_INCLUDE_ES3
+#include "GLFW/glfw3.h"
+#include <GLES3/gl3.h>
 #else
 #include <SDL2/SDL.h>
+#include "glad/glad.h"
 #endif
 
 #include <iostream>
@@ -24,6 +25,8 @@
 #include "Events/WindowEvent.h"
 #include "Events/KeyEvent.h"
 #include "Events/MouseEvent.h"
+
+void mainLoop();
 
 static std::string vertexShaderSourceTriangle = R"(#version 300 es
                                  layout (location = 0) in vec2 aPos;
@@ -42,7 +45,6 @@ static std::string fragmentShaderSourceTriangle = R"(#version 300 es
                                    {
                                         FragColor = vColor;
                                    })";
-
 static std::string vertexShaderSourceSquare = R"(#version 300 es
                                  layout (location = 0) in vec2 aPos;
                                  void main()
@@ -57,15 +59,6 @@ static std::string fragmentShaderSourceSquare = R"(#version 300 es
                                    {
                                         FragColor = vec4(0.0f, 0.0f, 1.0f, 0.0f);
                                    })";
-
-static std::string fragmentShaderSourceSquare_2 = R"(#version 300 es
-                                   precision mediump float;
-                                   out vec4 FragColor;
-                                   void main()
-                                   {
-                                        FragColor = vec4(1.0f, 1.0f, 1.0f, 0.0f);
-                                   })";
-
 
 static std::unique_ptr<Shader> shaderTriangle;
 static std::unique_ptr<Shader> shaderSquare;

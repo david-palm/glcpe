@@ -3,13 +3,6 @@
 #include <cstdint>
 #include <vector>
 #include <iostream>
-#ifdef __EMSCRIPTEN__
-#include <emscripten.h>
-#define GLFW_INCLUDE_ES3
-#include "GLFW/glfw3.h"
-#else
-#include "glad/glad.h"
-#endif
 
 enum class ShaderDataType: uint8_t
 {

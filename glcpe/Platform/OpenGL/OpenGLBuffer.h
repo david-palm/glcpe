@@ -2,6 +2,7 @@
 
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
+#include <GLES3/gl3.h>
 #define GLFW_INCLUDE_ES3
 #include "GLFW/glfw3.h"
 #else

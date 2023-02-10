@@ -1,14 +1,13 @@
 #define SDL_MAIN_HANDLED
 #include <iostream>
 
+#ifdef __EMSCRIPTEN__
+#include <Emscripten.h>
+#endif
 #include "Application.h"
 
 Application* application;
 
-void mainLoop()
-{
-    application->runLoop();
-}
 
 int main()
 {
@@ -16,5 +15,11 @@ int main()
 #ifdef __EMSCRIPTEN__
     emscripten_set_main_loop(mainLoop, 0, true);
 #endif
+    delete application;
     return 0;
+}
+
+void mainLoop()
+{
+    application->runLoop();
 }

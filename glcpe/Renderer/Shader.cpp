@@ -1,14 +1,16 @@
 #include <vector>
 #include "Shader.h"
 #include <string>
+#include <iostream>
 
 #ifdef __EMSCRIPTEN__
-#include <emscripten.h>
+#include <GLES3/gl3.h>
 #define GLFW_INCLUDE_ES3
 #include "GLFW/glfw3.h"
 #else
 #include "glad/glad.h"
 #endif
+
 
 Shader::Shader(const std::string& vertexShaderSource, const std::string& fragmentShaderSource)
 {
@@ -122,6 +124,7 @@ Shader::~Shader()
 void Shader::bind() const
 {
     glUseProgram(m_ProgramId);
+    std::cout << "Binding shader \n";
 }
 void Shader::unbind() const
 {

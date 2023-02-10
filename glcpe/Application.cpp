@@ -21,23 +21,15 @@ public:
 Application::Application()
 {
     pushLayer(new ExampleLayer());
-    if(SDL_Init(SDL_INIT_VIDEO) < 0)
-    {
-        std::cerr << "SDL could not be initialized: " << SDL_GetError() << "\n";
-    }
-    else
-    {
-        std::cout << "SDL successfully initialized!\n";
-    }
 
     m_Window = std::unique_ptr<Window>(Window::create());
     m_Window->setEventCallback(std::bind(&Application::onEvent, this, std::placeholders::_1));
-
+#ifndef __EMSCRIPTEN__
     // Loading OpenGL ES2 pointers with glad and ending program if failing to do so
     if (!gladLoadGLES2Loader(SDL_GL_GetProcAddress)) {
         std::cerr << "Failed to initialize GLAD" << std::endl;
     }
-
+#endif
     // Create triangle
     float verticesTriangle[18] = {
             -0.5f, -0.5f,  1.0f, 0.0f, 0.0f, 1.0f,// left
@@ -98,6 +90,9 @@ Application::Application()
 
     vertexBufferSquare->unbind();
 
+    glClearColor(1.0f, 0.2f, 0.2f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+
     m_Running = true;
 #ifndef __EMSCRIPTEN__
     run();
@@ -110,31 +105,38 @@ Application::~Application()
 void Application::runLoop()
 {
     /* Render here */
-    glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
+    glClearColor(1.0f, 0.2f, 0.2f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
     shaderSquare->bind();
+    int error1 = glGetError();
     vertexArraySquare->bind();
+    int error2 = glGetError();
     glDrawElements(GL_TRIANGLES, vertexArraySquare->getIndexBuffer()->getCount(), GL_UNSIGNED_INT, nullptr);
     shaderTriangle->bind();
     vertexArrayTriangle->bind();
     glDrawElements(GL_TRIANGLES, vertexArrayTriangle->getIndexBuffer()->getCount(), GL_UNSIGNED_INT, nullptr);
-
+#ifdef __EMSCRIPTEN__
+    if (error1 != 0 || error2 != 0)
+    { std::cout << "Error1: " << error1 << "Error2: " << error2 <<"\n"; }
+    else {std::cout << "No errors found!" << "\n"; }
+#endif
     for(Layer* layer : m_LayerStack)
     {
         layer->onUpdate();
     }
-
 #ifndef __EMSCRIPTEN__
     m_Window->onUpdate();
 #endif
 }
 void Application::run()
 {
+#ifndef __EMSCRIPTEN__
     while(m_Running)
     {
         runLoop();
     }
+#endif
 }
 
 void Application::onEvent(Event& event)

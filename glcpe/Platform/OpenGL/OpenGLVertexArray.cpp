@@ -25,6 +25,7 @@ OpenGLVertexArray::OpenGLVertexArray()
 void OpenGLVertexArray::bind() const
 {
     glBindVertexArray(m_VaoId);
+    std::cout << "Binding Vertex Array" << std::endl;
 }
 
 void OpenGLVertexArray::unbind() const

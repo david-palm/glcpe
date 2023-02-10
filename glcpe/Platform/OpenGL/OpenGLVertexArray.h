@@ -1,3 +1,14 @@
+#pragma once
+
+#ifdef __EMSCRIPTEN__
+#include <GLES3/gl3.h>
+#define GLFW_INCLUDE_ES3
+#include "GLFW/glfw3.h"
+#else
+#include "glad/glad.h"
+#endif
+
+
 #include "../../Renderer/VertexArray.h"
 
 class OpenGLVertexArray : public VertexArray {
