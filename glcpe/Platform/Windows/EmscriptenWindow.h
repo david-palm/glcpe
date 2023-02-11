@@ -7,6 +7,10 @@
 #include "GLFW/glfw3.h"
 #endif
 
+#include "../../Events/WindowEvent.h"
+#include "../../Events/KeyEvent.h"
+#include "../../Events/MouseEvent.h"
+
 #include "../../Window.h"
 
 struct WindowData

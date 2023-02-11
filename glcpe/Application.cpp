@@ -117,9 +117,9 @@ void Application::runLoop()
     {
         layer->onUpdate();
     }
-#ifndef __EMSCRIPTEN__
+
     m_Window->onUpdate();
-#endif
+
 }
 void Application::run()
 {

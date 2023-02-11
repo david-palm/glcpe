@@ -3,6 +3,10 @@
 #include <SDL2/SDL.h>
 #include<map>
 
+#include "../../Events/WindowEvent.h"
+#include "../../Events/KeyEvent.h"
+#include "../../Events/MouseEvent.h"
+
 #include "../../Window.h"
 
 struct WindowData
