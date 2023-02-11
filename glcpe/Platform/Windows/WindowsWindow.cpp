@@ -143,6 +143,18 @@ void WindowsWindow::init(const WindowProperties& properties)
 
     SDL_AddEventWatch(reinterpret_cast<SDL_EventFilter>(sdlWindowCloseCallback), m_Window);
     SDL_AddEventWatch(reinterpret_cast<SDL_EventFilter>(sdlWindowResizeCallback), m_Window);
+
+    SDL_AddEventWatch(reinterpret_cast<SDL_EventFilter>(sdlKeyDownCallback), m_Window);
+    SDL_AddEventWatch(reinterpret_cast<SDL_EventFilter>(sdlKeyUpCallback), m_Window);
+
+    SDL_AddEventWatch(reinterpret_cast<SDL_EventFilter>(sdlMouseDownCallback), m_Window);
+    SDL_AddEventWatch(reinterpret_cast<SDL_EventFilter>(sdlMouseUpCallback), m_Window);
+    SDL_AddEventWatch(reinterpret_cast<SDL_EventFilter>(sdlMouseMoveCallback), m_Window);
+
+    WindowData &w = *(WindowData *) SDL_GetWindowData(m_Window, "WindowData");
+
+
+    std::cout << "Window size: " << w.width << ", " << w.height;
 }
 
 
@@ -175,4 +187,72 @@ static int sdlWindowResizeCallback(void* data, SDL_Event* sdlEvent)
     }
     return 1;
 }
+
+static int sdlKeyDownCallback(void* data, SDL_Event* sdlEvent)
+{
+    if(sdlEvent->type == SDL_KEYDOWN)
+    {
+        SDL_Window* window = (SDL_Window*)data;
+        WindowData &windowData = *(WindowData *) SDL_GetWindowData(window, "WindowData");
+        KeyDownEvent event(sdlEvent->key.keysym.sym, sdlEvent->key.repeat);
+        windowData.eventCallback(event);
+    }
+    return 1;
+}
+
+static int sdlKeyUpCallback(void* data, SDL_Event* sdlEvent)
+{
+    if(sdlEvent->type == SDL_KEYUP)
+    {
+        SDL_Window* window = (SDL_Window*)data;
+        WindowData &windowData = *(WindowData *) SDL_GetWindowData(window, "WindowData");
+        KeyUpEvent event(sdlEvent->key.keysym.sym);
+        windowData.eventCallback(event);
+    }
+    return 1;
+}
+
+static int sdlMouseDownCallback(void* data, SDL_Event* sdlEvent)
+{
+    if(sdlEvent->type == SDL_MOUSEBUTTONDOWN)
+    {
+        SDL_Window* window = (SDL_Window*)data;
+        WindowData &windowData = *(WindowData *) SDL_GetWindowData(window, "WindowData");
+
+        MouseDownEvent event(sdlEvent->button.button);
+        windowData.eventCallback(event);
+    }
+    return 1;
+}
+
+static int sdlMouseUpCallback(void* data, SDL_Event* sdlEvent)
+{
+    if(sdlEvent->type == SDL_MOUSEBUTTONUP)
+    {
+        SDL_Window* window = (SDL_Window*)data;
+        WindowData &windowData = *(WindowData *) SDL_GetWindowData(window, "WindowData");
+
+        MouseUpEvent event(sdlEvent->button.button);
+        windowData.eventCallback(event);
+    }
+    return 1;
+}
+
+static int sdlMouseMoveCallback(void* data, SDL_Event* sdlEvent)
+{
+    if(sdlEvent->type == SDL_MOUSEMOTION)
+    {
+        SDL_Window* window = (SDL_Window*)data;
+        WindowData &windowData = *(WindowData *) SDL_GetWindowData(window, "WindowData");
+
+        float x = (float) (sdlEvent->motion.x / (double) windowData.width) * 2.0 - 1.0;
+        float y = (float) (sdlEvent->motion.y / (double) windowData.height) * 2.0 - 1.0;
+
+        MouseMoveEvent event(x, y);
+        windowData.eventCallback(event);
+    }
+    return 1;
+}
+
+
 

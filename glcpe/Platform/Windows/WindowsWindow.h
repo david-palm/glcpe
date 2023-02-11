@@ -38,6 +38,8 @@ private:
     virtual void init(const WindowProperties& properties);
     virtual void shutdown();
 
+
+
 private:
 #ifndef __EMSCRIPTEN__
     SDL_Window* m_Window;
@@ -53,3 +55,10 @@ private:
 //Callback functions
 static int sdlWindowCloseCallback(void* data, SDL_Event* sdlEvent);
 static int sdlWindowResizeCallback(void* data, SDL_Event* sdlEvent);
+
+static int sdlKeyDownCallback(void* data, SDL_Event* sdlEvent);
+static int sdlKeyUpCallback(void* data, SDL_Event* sdlEvent);
+
+static int sdlMouseDownCallback(void* data, SDL_Event* sdlEvent);
+static int sdlMouseUpCallback(void* data, SDL_Event* sdlEvent);
+static int sdlMouseMoveCallback(void* data, SDL_Event* sdlEvent);

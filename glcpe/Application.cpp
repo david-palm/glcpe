@@ -10,7 +10,7 @@ public:
 
     void onUpdate() override
     {
-        std::cout << "Updating Example Layer" << std::endl;
+        //std::cout << "Updating Example Layer" << std::endl;
     }
 
     void onEvent(Event& event) override
