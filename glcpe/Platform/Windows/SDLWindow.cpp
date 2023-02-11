@@ -1,4 +1,4 @@
-#include "WindowsWindow.h"
+#include "SDLWindow.h"
 
 #include "../../Events/WindowEvent.h"
 #include "../../Events/KeyEvent.h"
@@ -9,34 +9,34 @@ static bool s_GLFWInitialized = false;
 
 Window* Window::create(const WindowProperties& properties)
 {
-    return new WindowsWindow(properties);
+    return new SDLWindow(properties);
 }
 
-WindowsWindow::WindowsWindow(const WindowProperties& properties)
+SDLWindow::SDLWindow(const WindowProperties& properties)
 {
     init(properties);
 }
 
-WindowsWindow::~WindowsWindow()
+SDLWindow::~SDLWindow()
 {
 
 }
 
 
-void WindowsWindow::setVSync(bool enabled) {
+void SDLWindow::setVSync(bool enabled) {
 
 }
-bool WindowsWindow::isVSync() const
+bool SDLWindow::isVSync() const
 {
     return true;
 }
 
-void WindowsWindow::shutdown()
+void SDLWindow::shutdown()
 {
     SDL_DestroyWindow(m_Window);
 }
 
-void WindowsWindow::onUpdate() {
+void SDLWindow::onUpdate() {
 #ifndef __EMSCRIPTEN__
     SDL_GL_SwapWindow(m_Window);
     SDL_Event event;
@@ -47,7 +47,7 @@ void WindowsWindow::onUpdate() {
 #endif
 }
 
-void WindowsWindow::init(const WindowProperties& properties)
+void SDLWindow::init(const WindowProperties& properties)
 {
     m_WindowData.title = properties.title;
     m_WindowData.width = properties.width;

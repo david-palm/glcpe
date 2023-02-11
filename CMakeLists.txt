@@ -16,8 +16,8 @@ add_executable(glcpe
                glcpe/Layer.h
                glcpe/LayerStack.cpp
                glcpe/LayerStack.h
-               glcpe/Platform/Windows/WindowsWindow.cpp
-               glcpe/Platform/Windows/WindowsWindow.h
+        glcpe/Platform/Windows/SDLWindow.cpp
+        glcpe/Platform/Windows/SDLWindow.h
                glcpe/Events/Event.h
                glcpe/Events/KeyEvent.h
                glcpe/Events/MouseEvent.h
@@ -25,7 +25,7 @@ add_executable(glcpe
                glcpe/Layer.cpp
                glcpe/Layer.h
                glcpe/LayerStack.cpp
-               glcpe/LayerStack.h)
+               glcpe/LayerStack.h glcpe/Platform/Windows/EmscriptenWindow.cpp glcpe/Platform/Windows/EmscriptenWindow.h)
 
 # Adding subdirectory for glcpe
 add_subdirectory(glcpe)
